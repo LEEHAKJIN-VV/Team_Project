@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProtectorFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_pro1_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="보호자1"
+            android:textSize="20sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+        </TextView>
+
+        <TextView
+            android:id="@+id/tv_pro1_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="010-1111-1111"
+            android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_pro1_name"
+            app:layout_constraintStart_toStartOf="parent">
+        </TextView>
+
+        <Button
+            android:id="@+id/btn_change_pro1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/change"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Button>
+
+        <View
+            android:id="@+id/view_pro1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_pro1_number">
+        </View>
+
+        <TextView
+            android:id="@+id/tv_pro2_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="보호자2"
+            android:textSize="20sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@id/view_pro1"
+            app:layout_constraintStart_toStartOf="parent">
+        </TextView>
+
+        <TextView
+            android:id="@+id/tv_pro2_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="010-2222-2222"
+            android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_pro2_name"
+            app:layout_constraintStart_toStartOf="parent">
+        </TextView>
+
+        <Button
+            android:id="@+id/btn_change_pro2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/change"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintTop_toBottomOf="@id/view_pro1"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Button>
+
+        <View
+            android:id="@+id/view_pro2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_pro2_number">
+        </View>
+
+        <TextView
+            android:id="@+id/tv_pro3_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="보호자3"
+            android:textSize="20sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@id/view_pro2"
+            app:layout_constraintStart_toStartOf="parent">
+        </TextView>
+
+        <TextView
+            android:id="@+id/tv_pro3_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="010-3333-3333"
+            android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_pro3_name"
+            app:layout_constraintStart_toStartOf="parent">
+        </TextView>
+
+        <Button
+            android:id="@+id/btn_change_pro3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/change"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintTop_toBottomOf="@id/view_pro2"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Button>
+
+        <View
+            android:id="@+id/view_pro3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_pro3_number">
+        </View>
+
+        <TextView
+            android:id="@+id/tv_pro4_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="보호자4"
+            android:textSize="20sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@id/view_pro3"
+            app:layout_constraintStart_toStartOf="parent">
+        </TextView>
+
+        <TextView
+            android:id="@+id/tv_pro4_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="010-4444-4444"
+            android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_pro4_name"
+            app:layout_constraintStart_toStartOf="parent">
+        </TextView>
+
+        <Button
+            android:id="@+id/btn_change_pro4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/change"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintTop_toBottomOf="@id/view_pro3"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Button>
+
+        <View
+            android:id="@+id/view_pro4"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_pro4_number">
+        </View>
+
+        <TextView
+            android:id="@+id/tv_pro5_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="보호자5"
+            android:textSize="20sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@id/view_pro4"
+            app:layout_constraintStart_toStartOf="parent">
+        </TextView>
+
+        <TextView
+            android:id="@+id/tv_pro5_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="010-555-5555"
+            android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_pro5_name"
+            app:layout_constraintStart_toStartOf="parent">
+        </TextView>
+
+        <Button
+            android:id="@+id/btn_change_pro5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/change"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintTop_toBottomOf="@id/view_pro4"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Button>
+
+        <View
+            android:id="@+id/view_pro5"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_pro5_number">
+        </View>
+
+        <Button
+            android:id="@+id/btn_protector_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="추가"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+        </Button>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

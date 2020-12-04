@@ -35,5 +35,6 @@
             app:layout_constraintEnd_toEndOf="@+id/sos_btn"
             app:layout_constraintStart_toStartOf="@+id/sos_btn"
             app:layout_constraintTop_toBottomOf="@+id/sos_btn" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

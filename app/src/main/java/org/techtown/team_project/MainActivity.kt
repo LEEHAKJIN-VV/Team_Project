@@ -1,36 +1,44 @@
 package org.techtown.team_project
 
-
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import android.Manifest
-import android.content.pm.PackageManager
+import android.annotation.SuppressLint
+import android.content.Context
+import android.location.Address
+import android.location.Geocoder
+import android.location.Location
+import android.location.LocationManager
+import android.telephony.SmsManager
+import android.util.Log
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.content.ContextCompat
-import androidx.core.content.PermissionChecker.PERMISSION_GRANTED
+import java.io.IOException
+import java.lang.Exception
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
     var pageList = arrayListOf<Fragment>()
     private val nameList = arrayOf("홈", "의료정보", "보호자")
-    private val REQUEST_CODE_PERMISSIONS = 1000
-    private val PERM_FLAG = 99
-    private val permissions = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
+
+    private lateinit var mGeocoder: Geocoder
+    private var address: List<Address>? = null
+    private var locationManager: LocationManager? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        onRequestPermission()
         val tabPages: ViewPager2 = findViewById(R.id.tab_pages)
         val tabs: TabLayout = findViewById(R.id.tabs)
-        //tabs.setSelectedTabIndicatorColor(Color.parseColor("#FF4500"))
+
         makeFragment()
         makeViewPage(tabPages, tabs)
+
+        locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager?
+        setAddress()
+        sendSMS("01037427058", "빨리해라 시팡넘아")
     }
 
     private fun makeFragment() {
@@ -42,6 +50,43 @@ class MainActivity : AppCompatActivity() {
         pageList.add(page3)
     }
 
+    private fun getMessageContent(){    // 보낼 메시지를 가져오는 메소드 (보호자 이름과 현재 주소를 가져와야함)
+        val myLocation = address?.get(0)?.getAddressLine(0).toString()
+    }
+
+    private fun setAddress(){   // 주소를 가져오는 메소드
+        val userLocation: Location? = getUserLocation()
+
+        if(userLocation != null) {
+            val currentLatitude = userLocation.latitude
+            val currentLongitude = userLocation.longitude
+            Log.d("MyCurrentLocation", "현재 내위치값 (위도 경도) (${currentLatitude}, ${currentLongitude})")
+
+            mGeocoder = Geocoder(applicationContext, Locale.KOREAN)
+            try {   // 위치를 가져옴
+                address = mGeocoder.getFromLocation(
+                    currentLatitude!!, currentLongitude!!, 1
+                )
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+            if (address != null) {
+                Log.d("내주소 한글", address!![0].getAddressLine(0))
+            }
+        }
+    }
+
+    private fun sendSMS(phoneNumber: String, message: String){      // 메시지를 보내느 코드
+        try {
+            val smsManager: SmsManager = SmsManager.getDefault()
+            smsManager.sendTextMessage(phoneNumber, null, message, null, null)
+            Toast.makeText(this, "Message sent", Toast.LENGTH_SHORT)
+        } catch (e: Exception){
+            Toast.makeText(this, e.message, Toast.LENGTH_SHORT)
+            e.printStackTrace()
+        }
+    }
+
     private fun makeViewPage(tabPages: ViewPager2, tabs: TabLayout) {
         val adapter = PageAdapter(this)
         adapter.setFragment(pageList)
@@ -50,54 +95,14 @@ class MainActivity : AppCompatActivity() {
             tab.text = nameList[position]
         }.attach()
     }
-    private fun isPermitted(): Boolean {     // 권한 체크
-        for (perm in permissions) {
-            if ((ContextCompat.checkSelfPermission(this, perm) != PERMISSION_GRANTED)) {
-                return false
-            }
-        }
-        return true
-    }
 
-    /*내 위치 권환을 요청하는 메서드*/
-    private fun onRequestPermission() {
-        if (ActivityCompat.checkSelfPermission(
-                        this, Manifest.permission.ACCESS_FINE_LOCATION
-                ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                        this,
-                        Manifest.permission.ACCESS_COARSE_LOCATION
-                ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                    this,
-                    arrayOf(
-                            Manifest.permission.ACCESS_FINE_LOCATION,
-                            Manifest.permission.ACCESS_COARSE_LOCATION
-                    ),
-                    REQUEST_CODE_PERMISSIONS
-            )
-            return
-        }
-    }
+    @SuppressLint("MissingPermission")
+    private fun getUserLocation(): Location? {
+        var currentLatLng: Location? = null
+        val locationProvider = LocationManager.GPS_PROVIDER
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when (requestCode) {
-            PERM_FLAG -> {
-                var check = true
-                for (grant in grantResults) {
-                    if (grant != PackageManager.PERMISSION_GRANTED) {
-                        check = false
-                        break
-                    }
-                }
-                if (check) {
-                    //startProcess()
-                } else {
-                    Toast.makeText(this, "권한을 승인하세요", Toast.LENGTH_LONG).show()
-                }
-            }
-        }
+        currentLatLng = locationManager?.getLastKnownLocation(locationProvider)
+        return currentLatLng
     }
 }
 

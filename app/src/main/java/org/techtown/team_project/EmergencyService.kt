@@ -19,7 +19,7 @@ class EmergencyService: Service() {
             "EMERGENCY" -> {
                 Log.d(TAG, "응급버튼 누름")
                 getProtectorNumberList()
-                sendSMS(protectorNumberList, MainActivity.myLocation)
+                sendSMS(protectorNumberList, "저의 위치는 ${MainActivity.myLocation} ${MainActivity.smsMessage}")
             }
         }
         return START_STICKY

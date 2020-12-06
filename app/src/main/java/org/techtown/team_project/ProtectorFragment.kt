@@ -64,7 +64,8 @@ class ProtectorFragment : Fragment() {
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        var name=data!!.getStringExtra("protector name")
+        if(data==null) return
+        var name=data.getStringExtra("protector name")
         var number= data.getStringExtra("protector number")
         var names = listOf<String>()
         var numbers= listOf<String>()

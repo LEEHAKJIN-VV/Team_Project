@@ -19,6 +19,7 @@ import android.view.KeyEvent
 import java.io.IOException
 import java.lang.Exception
 import java.util.*
+import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
     var pageList = arrayListOf<Fragment>()
@@ -28,6 +29,13 @@ class MainActivity : AppCompatActivity() {
     private var address: List<Address>? = null
     private var locationManager: LocationManager? = null
     private var shortPress = false  // 버튼 길게 누름 감지
+
+    private var protectorNumberList: ArrayList<String> = ArrayList()    // 보호자 전화번호 리스트
+
+    companion object{
+        lateinit var myLocation: String     // 내위치
+        var smsMessage: String = "입니다 실제상황입니다 저는 지금 위험한 상황에 있습니다. 도와주세요!!"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         makeViewPage(tabPages, tabs)
 
         locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager?
-        setAddress()
+        getAddress()
     }
 
     private fun makeFragment() {
@@ -52,11 +60,14 @@ class MainActivity : AppCompatActivity() {
         pageList.add(page3)
     }
 
-    private fun getMessageContent(){    // 보낼 메시지를 가져오는 메소드 (보호자 이름과 현재 주소를 가져와야함)
-        val myLocation = address?.get(0)?.getAddressLine(0).toString()
+    private fun getProtectorNumberList(){    // 보낼 메시지를 가져오는 메소드 (보호자 이름과 현재 주소를 가져와야함)
+        for(i in 0..4){
+            if(SavedInfo.prefs.getString("protector number$i","")!="")
+                protectorNumberList.add(SavedInfo.prefs.getString("protector number$i",""))
+        }
     }
 
-    private fun setAddress(){   // 주소를 가져오는 메소드
+    private fun getAddress(){   // 주소를 가져오는 메소드
         val userLocation: Location? = getUserLocation()
 
         if(userLocation != null) {
@@ -69,6 +80,7 @@ class MainActivity : AppCompatActivity() {
                 address = mGeocoder.getFromLocation(
                     currentLatitude!!, currentLongitude!!, 1
                 )
+                myLocation = address?.get(0)?.getAddressLine(0).toString() // 내위치를 String 으로 변환
             } catch (e: IOException) {
                 e.printStackTrace()
             }
@@ -78,10 +90,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun sendSMS(phoneNumber: String, message: String){      // 메시지를 보내느 코드
+    private fun sendSMS(phoneNumberList: ArrayList<String>, message: String){      // 메시지를 보내느 코드
         try {
-            val smsManager: SmsManager = SmsManager.getDefault()
-            smsManager.sendTextMessage(phoneNumber, null, message, null, null)
+            for (number in phoneNumberList){
+                val smsManager: SmsManager = SmsManager.getDefault()
+                smsManager.sendTextMessage(number, null, message,null, null)
+            }
         } catch (e: Exception){
             e.printStackTrace()
         }
@@ -114,7 +128,8 @@ class MainActivity : AppCompatActivity() {
     override fun onKeyLongPress(keyCode: Int, event: KeyEvent?): Boolean {
         if(keyCode == KeyEvent.KEYCODE_VOLUME_DOWN){
             Log.d("Volumn", "길게누르는중")
-            sendSMS("01071207426", "Test")
+            getProtectorNumberList()
+            sendSMS(protectorNumberList, "저의 위치는 $myLocation $smsMessage")
             shortPress = false
             return true
         }

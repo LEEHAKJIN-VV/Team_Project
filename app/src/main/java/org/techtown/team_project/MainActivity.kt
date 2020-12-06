@@ -8,13 +8,14 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.location.Address
 import android.location.Geocoder
 import android.location.Location
 import android.location.LocationManager
 import android.telephony.SmsManager
 import android.util.Log
-import android.widget.Toast
+import android.view.KeyEvent
 import java.io.IOException
 import java.lang.Exception
 import java.util.*
@@ -26,10 +27,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var mGeocoder: Geocoder
     private var address: List<Address>? = null
     private var locationManager: LocationManager? = null
+    private var shortPress = false  // 버튼 길게 누름 감지
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         val tabPages: ViewPager2 = findViewById(R.id.tab_pages)
         val tabs: TabLayout = findViewById(R.id.tabs)
 
@@ -38,7 +41,6 @@ class MainActivity : AppCompatActivity() {
 
         locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager?
         setAddress()
-        sendSMS("01037427058", "빨리해라 시팡넘아")
     }
 
     private fun makeFragment() {
@@ -80,9 +82,7 @@ class MainActivity : AppCompatActivity() {
         try {
             val smsManager: SmsManager = SmsManager.getDefault()
             smsManager.sendTextMessage(phoneNumber, null, message, null, null)
-            Toast.makeText(this, "Message sent", Toast.LENGTH_SHORT)
         } catch (e: Exception){
-            Toast.makeText(this, e.message, Toast.LENGTH_SHORT)
             e.printStackTrace()
         }
     }
@@ -103,6 +103,53 @@ class MainActivity : AppCompatActivity() {
 
         currentLatLng = locationManager?.getLastKnownLocation(locationProvider)
         return currentLatLng
+    }
+
+    fun startService(){     // Foreground 서비스 시작
+        val serviceIntent: Intent = Intent(this, EmergencyService::class.java)
+        serviceIntent.action = "START_FOREGROUND"
+        startService(serviceIntent)
+    }
+
+    override fun onKeyLongPress(keyCode: Int, event: KeyEvent?): Boolean {
+        if(keyCode == KeyEvent.KEYCODE_VOLUME_DOWN){
+            Log.d("Volumn", "길게누르는중")
+            sendSMS("01071207426", "Test")
+            shortPress = false
+            return true
+        }
+        return false
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        if(keyCode == KeyEvent.KEYCODE_VOLUME_DOWN){
+            if(event?.action == KeyEvent.ACTION_DOWN){
+                event.startTracking()
+                if(event.repeatCount == 0){
+                    shortPress = true
+                }
+                return true
+            }
+        }
+        return super.onKeyDown(keyCode, event)
+    }
+
+    override fun onKeyUp(keyCode: Int, event: KeyEvent?): Boolean {
+        if(keyCode == KeyEvent.KEYCODE_VOLUME_DOWN){
+            if(shortPress){
+
+            } else{
+                //Don't handle longpress here, because the user will have to get his finger back up first
+            }
+            shortPress = false
+            return true
+        }
+        return super.onKeyUp(keyCode, event)
+    }
+
+    override fun onDestroy() {  // 앱이 종료됐을때 Foreground 서비스 시작
+        super.onDestroy()
+        startService()
     }
 }
 

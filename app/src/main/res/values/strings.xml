@@ -12,6 +12,10 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    <string name="first_explain">1. 의료정보와 보호자를 설정해주세요!</string>
+    <string name="second_explain">2. 앱이 실행시, 볼륨하단 버튼을 길게 누르면 보호자에게 위급상황 문자가 갑니다!</string>
+    <string name="third_explain">3. 앱이 종료되었을 시, 상단 알림바에서 EMERGENCY 버튼을 누르면 위급상황 문자가 갑니다!</string>
+    <string name="four_explain">4. 배터리가 저전력 모드일 때, EMERGENCY 버튼은 비활성화 됩니다.</string>
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>

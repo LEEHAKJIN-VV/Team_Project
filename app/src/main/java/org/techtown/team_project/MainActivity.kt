@@ -9,6 +9,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.location.Address
 import android.location.Geocoder
 import android.location.Location
@@ -22,7 +23,7 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
     var pageList = arrayListOf<Fragment>()
-    private val nameList = arrayOf("홈", "의료정보", "보호자")
+    private val nameList = arrayOf("사용방법", "의료정보", "보호자")
 
     private lateinit var mGeocoder: Geocoder
     private var address: List<Address>? = null
@@ -35,6 +36,7 @@ class MainActivity : AppCompatActivity() {
 
         val tabPages: ViewPager2 = findViewById(R.id.tab_pages)
         val tabs: TabLayout = findViewById(R.id.tabs)
+        tabs.setSelectedTabIndicator(R.color.black)
 
         makeFragment()
         makeViewPage(tabPages, tabs)

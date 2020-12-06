@@ -24,8 +24,8 @@ object EmergencyNotification {
 
         val notification: Notification = NotificationCompat.Builder(context, CHANNEL_ID)
                 .setContentTitle("Foreground Service")  // 휴대폰 상당(제일 최상단)에 뜨는 메시지
-                .setContentText("Old People")
-                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentText("응급대기")
+                .setSmallIcon(R.mipmap.ic_launcher_app_icon)
                 .setOngoing(true) // true 일 경우 알림 리스트에서 클릭하거나 좌우로 드래그해도 안 사라짐
                 .addAction(NotificationCompat.Action(android.R.drawable.alert_dark_frame,
                         "EMERGENCY!!", emergencyPendingIntent))

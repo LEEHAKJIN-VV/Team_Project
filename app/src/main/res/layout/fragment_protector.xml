@@ -17,7 +17,9 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
             android:text="보호자1"
+            android:textColor="@color/black"
             android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -30,7 +32,9 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="010-1111-1111"
+            android:textColor="@color/black"
             android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_pro1_name">
 
@@ -41,6 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
+            android:background="@drawable/circle"
             android:text="@string/change"
             app:layout_constraintBottom_toTopOf="@+id/view_pro1"
             app:layout_constraintEnd_toEndOf="parent"
@@ -66,7 +71,9 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
             android:text="보호자2"
+            android:textColor="@color/black"
             android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/view_pro1">
 
@@ -79,7 +86,9 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="010-2222-2222"
+            android:textColor="@color/black"
             android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_pro2_name">
 
@@ -90,6 +99,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
+            android:background="@drawable/circle"
             android:text="@string/change"
             app:layout_constraintBottom_toTopOf="@+id/view_pro2"
             app:layout_constraintEnd_toEndOf="parent"
@@ -115,7 +125,9 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
             android:text="보호자3"
+            android:textColor="@color/black"
             android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/view_pro2">
 
@@ -128,7 +140,9 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="010-3333-3333"
+            android:textColor="@color/black"
             android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_pro3_name">
 
@@ -139,6 +153,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
+            android:background="@drawable/circle"
             android:text="@string/change"
             app:layout_constraintBottom_toTopOf="@+id/view_pro3"
             app:layout_constraintEnd_toEndOf="parent"
@@ -164,7 +179,9 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
             android:text="보호자4"
+            android:textColor="@color/black"
             android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/view_pro3">
 
@@ -177,7 +194,9 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="010-4444-4444"
+            android:textColor="@color/black"
             android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_pro4_name">
 
@@ -188,6 +207,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
+            android:background="@drawable/circle"
             android:text="@string/change"
             app:layout_constraintBottom_toTopOf="@+id/view_pro4"
             app:layout_constraintEnd_toEndOf="parent"
@@ -213,7 +233,9 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
             android:text="보호자5"
+            android:textColor="@color/black"
             android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/view_pro4">
 
@@ -226,7 +248,9 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="010-555-5555"
+            android:textColor="@color/black"
             android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_pro5_name">
 
@@ -237,6 +261,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
+            android:background="@drawable/circle"
             android:text="@string/change"
             app:layout_constraintBottom_toTopOf="@+id/view_pro5"
             app:layout_constraintEnd_toEndOf="parent"

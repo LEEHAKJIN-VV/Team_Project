@@ -21,8 +21,6 @@ class ProtectorAdd() : AppCompatActivity() {
 
         edtvProNumber.setOnEditorActionListener { textView, i, keyEvent ->
             if(i == EditorInfo.IME_ACTION_DONE){ // 여기서 넘어온 텍스트값 처리
-                Log.d("MedicalAdd", "완료")
-                Log.d("MedicalAdd tv", "${textView.text}")  // blood Type의 tv가 TextView
                 val intent = Intent()
                 intent.putExtra("protector name",edtvProName.text.toString())
                 intent.putExtra("protector number",edtvProNumber.text.toString())
@@ -30,7 +28,6 @@ class ProtectorAdd() : AppCompatActivity() {
                 finish() // 액티비티 종료
                 return@setOnEditorActionListener true
             }
-            Log.d("MedicalAdd", "실패")
             false
         }
     }
